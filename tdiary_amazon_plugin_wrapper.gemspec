@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = TdiaryAmazonPluginWrapper::VERSION
   spec.authors       = ["Kazuhiro NISHIYAMA"]
   spec.email         = ["zn@mbf.nifty.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{tDiary amazon plugin use without tdiary, from rails etc.}
+  spec.summary       = %q{tDiary amazon plugin without tdiary}
   spec.homepage      = ""
   spec.licenses      = ["MIT", "GPL-2"]
 
