@@ -10,7 +10,7 @@ class TdiaryAmazonPluginWrapper
     conf['amazon.aid'] ||= 'znz-22'
     @conf = DummyConf.new.merge(conf)
     @options = options
-    @cache_path = CACHE_PATH
+    @cache_path = self.class.cache_path
     @mode = 'day'
     @cgi = DummyCGI.new
     # load plugins
@@ -24,6 +24,22 @@ class TdiaryAmazonPluginWrapper
     # ignore
   end
 
+  @@cache_path = nil
+
+  def self.cache_path=(cache_path)
+    @@cache_path = cache_path
+  end
+
+  def self.cache_path
+    return @@cache_path if @@cache_path
+    if defined?(Rails)
+      @@cache_path = Rails.root + 'tmp'
+    else
+      require 'tmpdir'
+      @@cache_path = Dir.tmpdir
+    end
+  end
+
   class DummyConf < Hash
     def secure
       false
@@ -33,13 +49,6 @@ class TdiaryAmazonPluginWrapper
     def to_native(str, charset=nil)
       str
     end
-  end
-
-  if defined?(Rails)
-    CACHE_PATH = Rails.root + 'tmp'
-  else
-    require 'tmpdir'
-    CACHE_PATH = Dir.tmpdir
   end
 
   class DummyCGI
