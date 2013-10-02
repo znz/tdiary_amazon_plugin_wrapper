@@ -1,6 +1,6 @@
 # TdiaryAmazonPluginWrapper
 
-TODO: Write a gem description
+tDiary amazon plugin use without tdiary, with rails etc.
 
 ## Installation
 
