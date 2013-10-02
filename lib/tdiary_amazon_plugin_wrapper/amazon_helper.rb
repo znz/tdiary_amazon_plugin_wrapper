@@ -6,19 +6,31 @@ class TdiaryAmazonPluginWrapper
 
     def amazon_img(isbn)
       img = amazon.isbn_image_left(isbn).html_safe[/<img[^<>]*?>/]
-      if img
-        img.html_safe
-      else
-        tag(:img, amazon.amazon_image(nil).update(alt: isbn))
-      end
+      img ||= tag(:img, amazon.amazon_image(nil).update(alt: isbn))
+      img = amazon_fixup_image_url(img)
+      img.html_safe
     end
 
     def amazon_img_right(isbn)
-      amazon.isbn_image_right(isbn).html_safe
+      img = amazon.isbn_image_right(isbn)
+      img = amazon_fixup_image_url(img)
+      img.html_safe
     end
 
     def amazon_img_left(isbn)
-      amazon.isbn_image_left(isbn).html_safe
+      img = amazon.isbn_image_left(isbn)
+      img = amazon_fixup_image_url(img)
+      img.html_safe
+    end
+
+    def amazon_fixup_image_url(img)
+      if amazon.conf['amazon.default_image_base'] == '/assets/amazon/'
+        img.gsub(%r!"/assets/(amazon/(?:large|small|medium)\.png)"!) do |m|
+          "\"#{image_path(m[/amazon.*\.png/])}\""
+        end
+      else
+        img
+      end
     end
   end
 end

@@ -46,7 +46,8 @@ In config/initializers/tdiary_amazon_plugin_wrapper.rb:
 
 ```ruby
 TdiaryAmazonPluginWrapper::DEFAULT_CONF.update({
-  'amazon.aid' => 'znz-22', # replace your id if use
+  #'amazon.aid' => 'znz-22', # Amazon Associates ID
+  'amazon.default_image_base' => '/assets/amazon/',
 })
 ```
 

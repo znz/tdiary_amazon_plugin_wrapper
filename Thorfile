@@ -18,6 +18,7 @@ class Default < Thor
     if File.exist?('font.ttf')
       font = "-font font.ttf"
     end
+    empty_directory 'vendor/assets/images/amazon'
     [
       {
         name: "large",
@@ -35,7 +36,7 @@ class Default < Thor
         width: 122,
       },
     ].each do |opt|
-      run "convert -background white -fill gray #{font} -size #{opt[:width]}x#{opt[:height]} -gravity center label:'No\\nImage' vendor/assets/images/#{opt[:name]}.png"
+      run "convert -background white -fill gray #{font} -size #{opt[:width]}x#{opt[:height]} -gravity center label:'No\\nImage' vendor/assets/images/amazon/#{opt[:name]}.png"
     end
   end
 end

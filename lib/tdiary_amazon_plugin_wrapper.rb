@@ -13,6 +13,8 @@ class TdiaryAmazonPluginWrapper
     'amazon.imgsize' => 1, # Medium
   }
 
+  attr_reader :conf, :options
+
   def initialize(conf={}, options={})
     conf = DEFAULT_CONF.merge(conf)
     @conf = DummyConf.new.merge(conf)
