@@ -58,6 +58,10 @@ TdiaryAmazonPluginWrapper::DEFAULT_CONF.update({
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
+## Update upstream files
+
+* `thor update_plugin`
+
 ## LICENSE
 
 The files under misc are GPL-2 from tdiary-core.
