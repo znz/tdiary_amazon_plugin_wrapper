@@ -18,7 +18,37 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+amazon = TdiaryAmazonPluginWrapper.new
+puts amazon.isbn_image_left "asin", "comment"
+puts amazon.isbn_detail "asin"
+```
+
+see http://docs.tdiary.org/?amazon.rb for more details.
+
+### Rails
+
+In controller:
+
+```ruby
+  helper TdiaryAmazonPluginWrapper::AmazonHelper
+```
+
+In view:
+
+* `<%= amazon_img(isbn) %>`
+* `<%= amazon_img_right(isbn) %>`
+* `<%= amazon_img_left(isbn) %>`
+* `<%= amazon.isbn_detail(isbn) %>`
+* etc.
+
+In config/initializers/tdiary_amazon_plugin_wrapper.rb:
+
+```ruby
+TdiaryAmazonPluginWrapper::DEFAULT_CONF.update({
+  'amazon.aid' => 'znz-22', # replace your id if use
+})
+```
 
 ## Contributing
 
