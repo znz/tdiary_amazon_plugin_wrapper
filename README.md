@@ -59,9 +59,19 @@ TdiaryAmazonPluginWrapper::DEFAULT_CONF.update({
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-## Update upstream files
+## Maintenance
 
-* `thor update_plugin`
+### Update upstream files
+
+* Run `thor update_plugin`
+
+### Generate fallback images
+
+1. Download [mplus-outline-fonts](http://mplus-fonts.sourceforge.jp/mplus-outline-fonts/download/index.html)
+2. Extract it
+3. Make symlink (`ln -sf /path/to/mplus-TESTFLIGHT-056/mplus-1c-black.ttf font.ttf`)
+   or copy to `font.ttf`
+4. Run `thor default_images`
 
 ## LICENSE
 
