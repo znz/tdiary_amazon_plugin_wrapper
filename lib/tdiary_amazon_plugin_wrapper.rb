@@ -10,8 +10,8 @@ class TdiaryAmazonPluginWrapper
     'amazon.imgsize' => 1, # Medium
   }
 
-  def initialize(conf=DEFAULT_CONF, options={})
-    # dummy
+  def initialize(conf={}, options={})
+    conf = DEFAULT_CONF.merge(conf)
     @conf = DummyConf.new.merge(conf)
     @options = options
     @cache_path = self.class.cache_path
