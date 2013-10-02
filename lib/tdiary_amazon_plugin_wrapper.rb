@@ -1,5 +1,8 @@
 require "tdiary_amazon_plugin_wrapper/version"
 require 'erb'
+if defined?(::Rails)
+  require "tdiary_amazon_plugin_wrapper/engine"
+end
 
 class TdiaryAmazonPluginWrapper
   include ERB::Util
