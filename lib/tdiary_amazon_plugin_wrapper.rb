@@ -4,6 +4,8 @@ require 'erb'
 class TdiaryAmazonPluginWrapper
   include ERB::Util
 
+  autoload :AmazonHelper, "tdiary_amazon_plugin_wrapper/amazon_helper"
+
   def initialize(conf={}, options={})
     # dummy
     conf['amazon.imgsize'] ||= 1 # Medium
