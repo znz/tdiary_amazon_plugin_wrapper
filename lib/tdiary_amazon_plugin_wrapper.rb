@@ -6,10 +6,12 @@ class TdiaryAmazonPluginWrapper
 
   autoload :AmazonHelper, "tdiary_amazon_plugin_wrapper/amazon_helper"
 
-  def initialize(conf={}, options={})
+  DEFAULT_CONF = {
+    'amazon.imgsize' => 1, # Medium
+  }
+
+  def initialize(conf=DEFAULT_CONF, options={})
     # dummy
-    conf['amazon.imgsize'] ||= 1 # Medium
-    conf['amazon.aid'] ||= 'znz-22'
     @conf = DummyConf.new.merge(conf)
     @options = options
     @cache_path = self.class.cache_path
