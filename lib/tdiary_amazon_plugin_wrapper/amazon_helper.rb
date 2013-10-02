@@ -9,7 +9,7 @@ class TdiaryAmazonPluginWrapper
       if img
         img.html_safe
       else
-        isbn
+        tag(:img, amazon.amazon_image(nil).update(alt: isbn))
       end
     end
 
