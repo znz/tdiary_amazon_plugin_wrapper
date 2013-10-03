@@ -32,5 +32,17 @@ class TdiaryAmazonPluginWrapper
         img
       end
     end
+
+    def isbn_detail(asin)
+      html = amazon.isbn_detail(asin)
+      html = amazon_fixup_image_url(html)
+      html.html_safe
+    end
+
+    def isbn_image(asin, label='')
+      html = amazon.isbn_image(asin, label)
+      html = amazon_fixup_image_url(html)
+      html.html_safe
+    end
   end
 end
