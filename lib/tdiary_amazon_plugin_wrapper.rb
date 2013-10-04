@@ -27,6 +27,11 @@ class TdiaryAmazonPluginWrapper
       path = File.expand_path("../../misc/plugin/#{plugin_path}", __FILE__)
       eval(File.read(path), binding, path, 1)
     end
+    if defined?(Rails) && !Rails.cache.is_a?(ActiveSupport::Cache::FileStore)
+      class << self
+        alias_method_chain :amazon_call_ecs, :rails_cache
+      end
+    end
   end
 
   def add_conf_proc(key, label, genre=nil, &block)
@@ -63,6 +68,12 @@ class TdiaryAmazonPluginWrapper
   class DummyCGI
     def smartphone?
       false
+    end
+  end
+
+  def amazon_call_ecs_with_rails_cache(asin, id_type, country)
+    value = Rails.cache.fetch("amazon/#{country}#{asin}") do
+      amazon_call_ecs_without_rails_cache(asin, id_type, country)
     end
   end
 end
