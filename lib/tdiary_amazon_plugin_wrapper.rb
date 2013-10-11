@@ -76,4 +76,8 @@ class TdiaryAmazonPluginWrapper
       amazon_call_ecs_without_rails_cache(asin, id_type, country)
     end
   end
+
+  def countries
+    @countries ||= (@amazon_url_hash.keys & @amazon_ecs_url_hash.keys)
+  end
 end
