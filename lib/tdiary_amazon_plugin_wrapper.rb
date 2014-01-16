@@ -14,6 +14,7 @@ class TdiaryAmazonPluginWrapper
   }
 
   attr_reader :conf, :options
+  attr_reader :log
 
   def initialize(conf={}, options={})
     conf = DEFAULT_CONF.merge(conf)
@@ -22,6 +23,9 @@ class TdiaryAmazonPluginWrapper
     @cache_path = self.class.cache_path
     @mode = 'day'
     @cgi = DummyCGI.new
+    @log = []
+    @logger = DummyLogger.new(@log)
+
     # load plugins
     %w"ja/amazon.rb amazon.rb".each do |plugin_path|
       path = File.expand_path("../../misc/plugin/#{plugin_path}", __FILE__)
@@ -68,6 +72,16 @@ class TdiaryAmazonPluginWrapper
   class DummyCGI
     def smartphone?
       false
+    end
+  end
+
+  class DummyLogger
+    def initialize(log)
+      @log = log
+    end
+
+    def error(message)
+      @log << [:error, message]
     end
   end
 
